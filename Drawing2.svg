@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   id="svg821"
+   version="1.1"
+   viewBox="0 0 210 297"
+    height="150mm" 
+   width="210mm">
+  <defs
+     id="defs815">
+    <linearGradient
+       id="linearGradient1544">
+      <stop
+         id="stop1540"
+         offset="0"
+         style="stop-color:#25c0dd;stop-opacity:1;" />
+      <stop
+         id="stop1542"
+         offset="1"
+         style="stop-color:#74b1c2;stop-opacity:1;" />
+    </linearGradient>
+    <linearGradient
+       id="linearGradient1502">
+      <stop
+         id="stop1498"
+         offset="0"
+         style="stop-color:#550342;stop-opacity:1;" />
+      <stop
+         id="stop1500"
+         offset="1"
+         style="stop-color:#9955ff;stop-opacity:0;" />
+    </linearGradient>
+    <linearGradient
+       gradientTransform="matrix(1.0353925,0,0,0.99988189,12.445497,0.01760233)"
+       gradientUnits="userSpaceOnUse"
+       y2="50.0369"
+       x2="82.001381"
+       y1="149.0369"
+       x1="48.224281"
+       id="linearGradient1550"
+       xlink:href="#linearGradient1544" />
+    <linearGradient
+       gradientUnits="userSpaceOnUse"
+       y2="149.56194"
+       x2="92.132927"
+       y1="149.56194"
+       x1="38.648056"
+       id="linearGradient1572"
+       xlink:href="#linearGradient1502" />
+    <filter
+       height="1.5007676"
+       y="-0.25038379"
+       width="1.4521164"
+       x="-0.2260582"
+       id="filter2990"
+       style="color-interpolation-filters:sRGB">
+      <feGaussianBlur
+         id="feGaussianBlur2992"
+         stdDeviation="3.2734221" />
+    </filter>
+  </defs>
+  <metadata
+     id="metadata818">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     id="layer2">
+    <ellipse
+       transform="matrix(2.9492369,0,0,2.5473192,-118.32814,-231.38028)"
+       ry="15.688342"
+       rx="40.376528"
+       cy="149.0369"
+       cx="79.862846"
+       id="path1407"
+       style="fill:url(#linearGradient1550);fill-opacity:1;fill-rule:evenodd;stroke:#ffffff;stroke-width:0.21570624;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:fill markers stroke;filter:url(#filter2990)" />
+  </g>
+  <g
+     id="layer1">
+    <path
+       transform="matrix(2.4066407,0,0,2.4148327,-47.184944,-210.70374)"
+       d="m 67.770981,147.15082 c -1.453559,0.0189 -0.74258,-1.95006 -0.03138,-2.41591 1.927323,-1.26244 4.243077,0.48911 4.863195,2.35316 1.109245,3.33435 -1.553854,6.59152 -4.737697,7.31048 -4.672416,1.0551 -8.981647,-2.62296 -9.757763,-7.12223 -1.034441,-5.99683 3.692282,-11.38787 9.506767,-12.20505 7.316936,-1.02835 13.802061,4.76139 14.652333,11.8913 1.029793,8.63528 -5.830317,16.22082 -14.275838,17.09962 -9.952755,1.03563 -18.642425,-6.89912 -19.546902,-16.66038 -1.044254,-11.26976 7.967828,-21.06593 19.044909,-21.99418 12.586484,-1.05474 23.490781,9.03648 24.441471,21.42944 1.066529,13.90303 -10.105104,25.9166 -23.81398,26.88876 -15.219451,1.07928 -28.343143,-11.1737 -29.33604,-26.19852"
+       id="path1368"
+       style="fill:url(#linearGradient1572);fill-opacity:1;fill-rule:oddeven;stroke:#5cf338;stroke-width:1.26458332" />
+    <path
+       id="path1370"
+       d="m 46.14473,145.55003 c -4.228647,-8.18302 -8.457168,-16.36579 -9.514187,-25.15486 -1.057019,-8.78907 1.057309,-18.18444 5.738839,-22.881596 4.68153,-4.697154 11.931008,-4.697154 17.163587,-2.496349 5.232578,2.200805 8.660433,6.891075 9.717658,12.649135 1.057224,5.75806 -0.150896,12.72844 -0.755034,18.79011 -0.604139,6.06167 -0.604139,11.21326 0.453063,17.12358 1.057201,5.91031 3.171205,12.57694 5.285591,19.24478"
+       style="opacity:0.753;fill:#11266f;fill-opacity:1;stroke:#b02ef9;stroke-width:0.63783979px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+    <path
+       id="path1374"
+       d="m 21.724494,82.045821 c -0.398591,1.438919 -0.239265,2.877747 0.876757,3.677426 1.116022,0.79968 3.186471,0.959487 4.460846,0.239895 1.274375,-0.719591 1.752492,-2.318741 1.115519,-3.836756 -0.636973,-1.518015 -2.390407,-2.957526 -3.744504,-2.957894 -1.354096,-3.67e-4 -2.310026,1.43841 -2.708618,2.877329 z"
+       style="fill:#1af406;stroke:#ffffff;stroke-width:0.63783979px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+    <path
+       id="path1378"
+       d="m 26.786246,84.556074 c 4.27816,6.406981 8.556459,12.814169 10.81064,15.382578 2.254181,2.568408 2.476765,1.338078 0.338818,-1.863731 -2.137946,-3.201811 -6.645098,-8.361927 -11.149458,-13.518847 0,0 0,0 0,0"
+       style="fill:#5fd3bc;stroke:#000000;stroke-width:0.53127444px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+    <path
+       id="path1374-7"
+       d="m 71.732784,74.668652 c -0.398591,1.438919 -0.239265,2.877748 0.876758,3.677427 1.116023,0.799679 3.18647,0.959486 4.460845,0.239894 1.274375,-0.719591 1.752492,-2.318741 1.115519,-3.836756 -0.636973,-1.518015 -2.390407,-2.957527 -3.744503,-2.957894 -1.354096,-3.68e-4 -2.310027,1.43841 -2.708619,2.877329 z"
+       style="fill:#500b8e;stroke:#e6bdde;stroke-width:1.83783979px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+    <path
+       id="path1378-5"
+       d="m 73.948694,79.075322 c -3.637353,7.331224 -7.274908,14.662854 -9.190859,17.606936 -1.915951,2.944082 -2.106541,1.526251 -0.288733,-2.137626 1.817808,-3.663878 5.649958,-9.568533 9.479592,-15.46931 0,0 0,0 0,0"
+       style="fill:#5fd3bc;stroke:#000000;stroke-width:0.5240286px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+    <text xml:space="preserve" id="text11020"  style="font-size:40px;fill:#c263cc"> <tspan x="150" y="280" id="tspan18310">  Meow </tspan></text> 
+
+    <flowRoot
+       transform="matrix(0.71102484,0,0,1.1541416,-64.903767,-416.9586)"
+       style="font-style:normal;font-weight:normal;font-size:16px;line-height:0;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#2ca089;fill-opacity:1;stroke:none"
+       id="flowRoot1562"
+       xml:space="preserve"><flowRegion
+         style="fill:#2ca089"
+         id="flowRegion1564"><rect
+           style="fill:#2ca089"
+           y="308.64944"
+           x="172.65001"
+           height="28.524784"
+           width="15.576958"
+             id="rect1566" /></flowRegion><flowPara         id="flowPara1568">Meow :3</flowPara></flowRoot>  </g>
+</svg>
