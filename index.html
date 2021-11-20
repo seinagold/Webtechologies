@@ -41,19 +41,18 @@
         }
         console.log("Ухты, что это сейчас было?")
      
-			console.log("О, это", typeof(Wow), "--- это объект, состоящий из трех переменных типа", typeof(Wow[0]));
+			console.log("О, это", typeof(Wow), "--- это массив, состоящий из трех переменных типа", typeof(Wow[0]));
        }
       Wow.push("snail");
       console.log("Интересный факт: изначально планировалось использовать больше типов животных, к примеру");
       console.log("%s",Wow[3]);
 {
-      console.log("Давайте я разрушительно переведу это)");
-			var destroy= ["Лягушечка", "Черепашка", "Ящерка", "Улиточка"];
-			Wow = destroy;
-			for(let value of Wow)
-    {
-        console.log("%s", value);
-    }
+      console.log("Давайте я разрушительно переведу несколько животных: fox, raven, snake");
+			var destroy= ["Лиса", "Ворон", "Змея"];
+			var [Fox, Raven, Snake]=destroy;
+        console.log("%s", Fox);
+        console.log("%s", Raven);
+        console.log("%s", Snake);
 }
       console.log("Кстати в тему операторов сравнения. Тут вся фишка в приведении типов:");
       count('3');
