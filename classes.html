@@ -3,50 +3,20 @@
         <title> Классы </title>
         <meta charset = "utf-8">
         <script>
-       {
-            //Продемонстрировать наследование классов (прототипное)
-            function Animal(name)
-            {
-                this.name = name;
-            };
-            Animal.prototype.greeting = function()
-            {
-                alert('Hey, dude! I\'m '+ this.name);
-            };
-            function Bird(name, song) 
-            {
-                Person.call(this, name);
-                this.song = song;
-            }
-           
-            let Raven = new Bird ('Phil', 'Car');
-            Raven.greeting();
-        }
+       
         {
-            //Продемонстрировать наследование классов (прототипное)
-            let animal =
-            {
-                eat: true,
-                move(speed)
-                {
-                  alert(`I am moving at a speed of ${speed}`);
-                }
-                
-            };
-            let bird =
-            {
-                sing: true,
-                __proto__:animal
-            };
-            
-        
-           bird.move = function(speed)
-           {
-                alert(`Yey! I\'m flying! Wohooo! My speed is ${speed}`);
-           };
-            bird.move(2);
-            
-            
+        //Прототипное наследование
+            let Animal = {
+                speed: 0,
+                 move(speed) //передвижение со скоростью speed
+                    {
+                        this.speed = speed;
+                        alert(`I\'m moving at a speed of ${this.speed}`);
+                    }
+            }
+            let Bird = Object.create(Animal); //унаследовал от животных прототип
+            console.log(Bird.move(2));
+            console.log(Bird);
         }
         {
         //Продемонстрировать наследование классов (классовое)
@@ -56,6 +26,7 @@
                     {
                         this.name = name;
                         this.speed = 0;
+                        
                     }
                     //добавим пару методов, чтобы было интереснее
                     move(speed) //передвижение со скоростью speed
@@ -83,6 +54,45 @@
             Bobby.stop();
             Bobby.blinks();
             }
+        {
+            let plant = 
+            {
+                do: "nothing"
+            }
+            let flower =
+            {
+                flowers: true
+            }
+            Object.setPrototypeOf(flower, plant); 
+            //установка прототипа plant на flower
+                console.log(plant.do);
+                console.log(plant.flowers);
+                console.log(flower.flowers);
+                
+            console.log(Object.getPrototypeOf(flower) === plant); //получение прототипа
+        }
+        { //Теневой метод
+            class Triangle
+            {
+                constructor(a, b)
+                {
+                    this.heigth = a;
+                    this.wigth = b;
+                }
+            }
+            class Squre extends Rectangle
+            {
+                constructor(a)
+                {
+                    super(a,a);
+                }
+            }
+            let abcd = new Square(2);
+            console.log(abcd);
+        }
+        {//Свойства
+        
+        }
         </script>
     </head>
     <body>
