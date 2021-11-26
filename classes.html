@@ -1,8 +1,66 @@
 <html>
     <head>
         <title> Классы </title>
-        <meta charset ="utf-8">
+        <meta charset = "utf-8">
         <script>
+       {
+            //Продемонстрировать наследование классов (прототипное)
+            function Animal(name)
+            {
+                this.name = name;
+            };
+            Animal.prototype.greeting = function()
+            {
+                alert('Hey, dude! I\'m '+ this.name);
+            };
+            function Bird(name, song) 
+            {
+                Person.call(this, name);
+                this.song = song;
+            }
+            Bird.Prototype = Object.create(Animal.Prototype);
+            Bird.Prototype.greeting = function ()
+            {
+                alert('Hey! I\'m ' + this.name + '! ' + this.song +':3');
+            }
+            let Raven = new Bird ('Phil', 'Car');
+            Raven.greeting();
+        }
+        {
+        //Продемонстрировать наследование классов (классовое)
+            class Reptilia 
+                {
+                    constructor(name)
+                    {
+                        this.name = name;
+                        this.speed = 0;
+                    }
+                    //добавим пару методов, чтобы было интереснее
+                    move(speed) //передвижение со скоростью speed
+                    {
+                        this.speed = speed;
+                        alert(`${this.name} is moving at a speed of ${this.speed}`);
+                    }
+                    stop() //останавливаем движение, скорость =0
+                    {
+                        this.speed = 0;
+                        alert(`now ${this.name} has stopped`);
+                    }
+                }
+            
+            class Lizard extends Reptilia
+                {
+                    blinks() //Инересный факт: ящерицы умеют моргать, а змеи нет
+                    {
+                        alert(`${this.name} blinks at you`);
+                    }
+                
+                }
+            let Bobby = new Lizard('Bobby');
+            Bobby.move(2);
+            Bobby.stop();
+            Bobby.blinks();
+            }
         </script>
     </head>
     <body>
