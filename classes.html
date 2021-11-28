@@ -112,7 +112,7 @@
             console.log(abcd);
         }
         { //4 - Свойства
-        let object1 = {};
+      {let object1 = {};
         Object.defineProperty(object1, 'property1', 
         {
             value: 42,
@@ -139,8 +139,28 @@
 			});
 
 			object1.property3 = 0;
-			console.log(object1.property2);
+			console.log(object1.property2);}
+      {  
+        class MysticAnimal
+        {
+           constructor(numb)
+           {
+                this.numberofeyes = numb;
+            }
+            get look()
+            {
+                return this.numberofeyes;
+            }
+            set look(value)
+            {
+                if(value<0) value =0;
+                this.numberofeyes=value;//количество глаз не бывает отрицательным
+            }
+            
         }
+       }
+       }
+        
         { //5 - Вызвать метод с чужим объектом
             console.log('Alien object boooo');
             function GreetingPerson(name)
