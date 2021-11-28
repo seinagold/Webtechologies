@@ -1,0 +1,240 @@
+<html>
+    <head>
+        <title> Intruction how to work woth JS-classes </title>
+        <meta charset = "utf-8">
+        <script>
+        { //1.1.1 - продемонстрировать наследование классов (классовое)
+            class Reptilia 
+                {
+                    constructor(name)
+                    {
+                        this.name = name;
+                        this.speed = 0;
+                        
+                    }
+                    //добавим пару методов, чтобы было интереснее
+                    move(speed) //передвижение со скоростью speed
+                    {
+                        this.speed = speed;
+                        console.log(`${this.name} is moving at a speed of ${this.speed}`);
+                    }
+                    stop() //останавливаем движение, скорость =0
+                    {
+                        this.speed = 0;
+                        console.log(`now ${this.name} has stopped`);
+                    }
+                }
+            
+            class Lizard extends Reptilia
+                {
+                    blinks() //Инересный факт: ящерицы умеют моргать, а змеи нет
+                    {
+                        console.log(`${this.name} blinks at you`);
+                    }
+                
+                }
+            let Bobby = new Lizard('Bobby');
+            console.log('ClassInheritance:');
+            Bobby.move(2);
+            Bobby.stop();
+            Bobby.blinks();
+        }
+        
+       {//1.1.2 - продемонстрировать наследование классов (функциональное)
+            console.log("Class-function Inheritance");
+            function Creature(sound)
+            {
+                this.sound=sound;
+            }
+            Creature.prototype.speak = function () 
+            {
+               console.log(`${this.sound}`);
+            }
+            class Pale extends Creature
+            {
+                speak()
+                {
+                    console.log(`I said ${this.sound}`);
+                }
+            }
+            let Pale1 = new Pale('Errr');
+            Pale1.speak();
+       }
+       { //1.2 - продемонстрировать прототипное наследование
+            let Animal = {
+                speed: 0,
+                 move(speed) //передвижение со скоростью speed
+                    {
+                        this.speed = speed;
+                        console.log(`I\'m moving at a speed of ${this.speed}`);
+                    }
+            }
+            let Bird = Object.create(Animal); //унаследовал от животных прототип
+           console.log('PrototypeInheritance:');
+           console.log(Bird.move(2));
+            console.log(Bird);
+        }
+        { //2 - работа с прототипами (снова)
+            let plant = 
+            {
+                do: "nothing"
+            }
+            let flower =
+            {
+                bloom: true
+            }
+            Object.setPrototypeOf(flower, plant); 
+            //установка прототипа plant на flower
+                console.log('Prototypes:');
+                console.log(plant.do);
+                console.log(flower.do);
+                console.log(flower.bloom);
+                console.log(Object.getPrototypeOf(flower) === plant); //получение прототипа
+        }
+        { //3 - вызов теневого метода
+            class Rectangle
+            {
+                constructor(a, b)
+                {
+                    this.heigth = a;
+                    this.wigth = b;
+                }
+            }
+            class Square extends Rectangle
+            {
+                constructor(a)
+                {
+                    super(a,a);
+                }
+            }
+            console.log('ShadowMethod:');
+            let abcd = new Square(2);
+            console.log(abcd);
+        }
+        { //4 - Свойства
+      {let object1 = {};
+        Object.defineProperty(object1, 'property1', 
+        {
+            value: 42,
+            writable: false
+            //By default, values added using Object.defineProperty() are immutable and not enumerable.(c) Documentation :3 
+            //То есть оно неизменяемое и не перичисляемое
+        });
+        Object.defineProperty(object1, 'property2',
+           {
+           value: -10,
+            enumerable: false,
+            configurable: true,
+            writable: true
+            });
+        console.log('Properties:');
+        console.log(object1.property1);
+        
+        
+        Object.defineProperty(object1, 'property3', {		
+				set: function(value) {
+					this.property2 = value;
+					return value;
+				}
+			});
+
+			object1.property3 = 0;
+			console.log(object1.property2);}
+      {  
+        class MysticAnimal
+        {
+           constructor(numb)
+           {
+                this.numberofeyes = numb;
+            }
+            get look()
+            {
+                return this.numberofeyes;
+            }
+            set look(value)
+            {
+                if(value<0) value =0;
+                this.numberofeyes=value;//количество глаз не бывает отрицательным
+            }
+            
+        }
+       }
+       }
+        
+        { //5 - Вызвать метод с чужим объектом
+            console.log('Alien object boooo');
+            function GreetingPerson(name)
+            {   
+                this.name = name;
+                console.log(`Hello, my name is ${name}`);
+            }
+            function Cat(name)
+            {
+                GreetingPerson.call(this, name);
+                console.log(` and I\'m a cat. Meow!`);
+            }
+            let nyan = new Cat('nyan-cat');
+        }
+        { //6 - Cоздать новый метод у всех строк
+           console.log("String method:");
+          String.prototype.nya = function() {
+				console.log(`${this}, nya <3`);
+			}
+			greeting = "Hello";
+			greeting.nya();
+        }
+        { //7 - Приватные свойства объекта
+         console.log(`Privacy:`);
+         class Incognito
+            {
+                #name = "inspector gadjet"; //приватное поле
+            }
+            let agent007 = new Incognito();
+            //agent007.name = "007"; //приведет к ошибке
+           // console.log(agent007.#name) //приведет к ошибке!
+        }
+        { //8 - Mixin
+           { console.log(`Mixin1:`);
+            let spiky= {
+ 				imspiky() {
+    					console.log(`I'm ${this.name} and I\'m a spiky one`);
+  				}
+			};
+			class cactus{
+				constructor(name){
+					this.name = "Mr."+ name;
+				}
+			}
+			class hedgehog{
+				constructor(name){
+					this.name = name;
+				}
+			}
+			Object.assign(cactus.prototype, spiky);
+			new cactus("Cactus").imspiky();
+			Object.assign(hedgehog.prototype, spiky);
+			new hedgehog("SONIC").imspiky();
+			}
+			{ console.log(`Mixin2:`);
+                let newMixin = Base => class extends Base 
+                {
+                hooray() 
+                {
+                    console.log("yo")
+                }
+                };
+
+        
+            class A { }
+            class B extends newMixin(A) { }
+            let SB = new B();
+            SB.hooray();
+			}
+        }
+        </script>
+    </head>
+    <body>
+        <main>
+        </main>
+    </body>
+</html>
