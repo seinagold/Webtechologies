@@ -3,21 +3,7 @@
         <title> Intruction how to work woth JS-classes </title>
         <meta charset = "utf-8">
         <script>
-        { //1 - продемонстрировать прототипное наследование
-            let Animal = {
-                speed: 0,
-                 move(speed) //передвижение со скоростью speed
-                    {
-                        this.speed = speed;
-                        console.log(`I\'m moving at a speed of ${this.speed}`);
-                    }
-            }
-            let Bird = Object.create(Animal); //унаследовал от животных прототип
-           console.log('PrototypeInheritance:');
-           console.log(Bird.move(2));
-            console.log(Bird);
-        }
-        { //1 - продемонстрировать наследование классов (классовое)
+        { //1.1.1 - продемонстрировать наследование классов (классовое)
             class Reptilia 
                 {
                     constructor(name)
@@ -52,8 +38,43 @@
             Bobby.move(2);
             Bobby.stop();
             Bobby.blinks();
+        }
+        
+       {//1.1.2 - продемонстрировать наследование классов (функциональное)
+            console.log("Class-function Inheritance");
+            function Creature(sound)
+            {
+                this.sound=sound;
             }
-        { //2 - работа с прототипами
+            Creature.prototype.speak = function () 
+            {
+               console.log(`${this.sound}`);
+            }
+            class Pale extends Creature
+            {
+                speak()
+                {
+                    console.log(`I said ${this.sound}`);
+                }
+            }
+            let Pale1 = new Pale('Errr');
+            Pale1.speak();
+       }
+       { //1.2 - продемонстрировать прототипное наследование
+            let Animal = {
+                speed: 0,
+                 move(speed) //передвижение со скоростью speed
+                    {
+                        this.speed = speed;
+                        console.log(`I\'m moving at a speed of ${this.speed}`);
+                    }
+            }
+            let Bird = Object.create(Animal); //унаследовал от животных прототип
+           console.log('PrototypeInheritance:');
+           console.log(Bird.move(2));
+            console.log(Bird);
+        }
+        { //2 - работа с прототипами (снова)
             let plant = 
             {
                 do: "nothing"
@@ -95,23 +116,30 @@
         Object.defineProperty(object1, 'property1', 
         {
             value: 42,
-            writable: true
+            writable: false
             //By default, values added using Object.defineProperty() are immutable and not enumerable.(c) Documentation :3 
             //То есть оно неизменяемое и не перичисляемое
         });
+        Object.defineProperty(object1, 'property2',
+           {
+           value: -10,
+            enumerable: false,
+            configurable: true,
+            writable: true
+            });
         console.log('Properties:');
         console.log(object1.property1);
         
         
-        Object.defineProperty(object1, 'property2', {		
+        Object.defineProperty(object1, 'property3', {		
 				set: function(value) {
-					this.property1 = value;
+					this.property2 = value;
 					return value;
 				}
 			});
 
-			object1.property2 = 0;
-			console.log(object1.property1);
+			object1.property3 = 0;
+			console.log(object1.property2);
         }
         { //5 - Вызвать метод с чужим объектом
             console.log('Alien object boooo');
@@ -146,7 +174,7 @@
            // console.log(agent007.#name) //приведет к ошибке!
         }
         { //8 - Mixin
-            console.log(`Mixin:`);
+           { console.log(`Mixin1:`);
             let spiky= {
  				imspiky() {
     					console.log(`I'm ${this.name} and I\'m a spiky one`);
@@ -162,11 +190,26 @@
 					this.name = name;
 				}
 			}
-			
 			Object.assign(cactus.prototype, spiky);
 			new cactus("Cactus").imspiky();
 			Object.assign(hedgehog.prototype, spiky);
 			new hedgehog("SONIC").imspiky();
+			}
+			{ console.log(`Mixin2:`);
+                let newMixin = Base => class extends Base 
+                {
+                hooray() 
+                {
+                    console.log("yo")
+                }
+                };
+
+        
+            class A { }
+            class B extends newMixin(A) { }
+            let SB = new B();
+            SB.hooray();
+			}
         }
         </script>
     </head>
