@@ -1,0 +1,121 @@
+
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title> E&E (elements and events)  </title>
+        <style> 
+            :root 
+            {
+                background-color: #d1aed0;
+                color: #3b0359;
+                font-style:italic;
+                font-family: calibri;
+            }
+        </style>
+    </head>
+    <body>
+        <main>
+            <h1 class = "header" style = "color: #ffe054" > Header </h1>
+            <div id = 'getElement'> </div>
+            <div id = 'text'> 
+                <ol id = 'plants' > </ol>
+            </div>
+            <div id = 'attribute'> Hey, I'm invisible ^.^ </div>
+            
+             <script>
+                {
+                    //задание 1 - получение элемента по селектору
+                    let elementOne = document.querySelector('#getElement');
+                    
+                    let anotherElement = document.createElement('p'); //создали элемент типа <p> -- чтобы потом добавить
+                    
+                    //задание 23 - добавление текстового узла
+                    let textNode = document.createTextNode('Good morning, plant-guys >.<');
+                    //чтобы добавить текстовый узел, его надо создать
+                    anotherElement.appendChild(textNode); 
+                    //добавили
+                    
+                    //задание 2 - добавление элемента
+                    elementOne.appendChild(anotherElement);                    
+                    //добавили новый элемент в конец, то есть последним -> 17
+                    
+                    //задание 3 - навигация по DOM 
+                    //(в принципе уже приведена выш, но вот еще:)
+                    //посмотрим первого потомка anotherElement
+                    console.log(anotherElement.childNodes[0]);
+                    //здесь он один и это текстовый узел
+                }
+                {
+                    
+                    //задание 25 - получение элемента по ID
+                    let plant = document.getElementById('plants');
+                    
+                    //задание 4 - создание фрагмента документа
+                    let fragment = document.createDocumentFragment();
+                    
+                    //теперь заполним его
+                    let plants = ['Mr.Cactus', 'Mr.Aloe', 'Ms.Violet'];
+                    //этим будем заполнять
+                    
+
+                    plants.forEach((plantguy) => 
+                    {
+                        let plantList = document.createElement('li');
+                        plantList.innerHTML = plantguy;
+                        fragment.appendChild(plantList);
+                    });
+                    //задание 24 - добавление фрагмента документа
+                    plant.appendChild(fragment);
+                    
+                    
+                    //задание 16 - элементы потомки
+                    let d2 = document.querySelector('#text'); 
+                    //получили родителя
+                    
+                    console.log('check is the First Child really the first:', d2.firstChild === d2.childNodes[0]); 
+                    //проверили
+                    
+                }
+                {
+                    // 6 - установка атрибута
+                    let invisible = document.querySelector('#attribute');
+                    //для этого получили элемент, чтобы добавить ему атрибут
+                    
+                    invisible.setAttribute('style', 'display:none'); //невидимость невидимке
+                    
+                    // 5 - удаление атрибута (другого, так как этот мне нравится )
+                    //получаем его
+                    let h1 = document.querySelector('.header');
+                    h1.removeAttribute('style');
+                    
+                    //8 - проверка наличия класса 
+                    console.log( h1.hasAttribute('class'));
+                    
+                    console.log(h1);
+                    
+                    // 7 - удаление класса
+                    h1.removeAttribute('class');
+                    
+                    console.log(h1);
+                    
+                    // 9 - установка ID
+                    h1.id = 'header';
+                    
+                    console.log(h1);
+                    
+                    //14 - переход к следующему элементу
+                    let d1 = h1.nextElementSibling;
+                    console.log(d1);
+                    //в данном случае узел является элементом. поэтому это и 12 - переход к следующему узлу. отдельно есть .nextSibling 
+                    
+                    //15, 13 - к предыдущему
+                    console.log(d1.previousElementSibling);
+                    
+                    // 21 - удалили элемет из DOM
+                    h1.remove();
+                }
+           
+           </script>
+        </main>
+    </body>
+</html>
