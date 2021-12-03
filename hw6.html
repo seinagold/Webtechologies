@@ -1,4 +1,3 @@
-
 <html>
     <head>
         <meta charset="utf-8">
@@ -17,7 +16,8 @@
         <main>
             <h1 class = "header" style = "color: #ffe054" > Header </h1>
             <div id = 'getElement'> </div>
-            <div id = 'text'> 
+            <div id = 'text'>
+                <p> Look! </p>
                 <ol id = 'plants' > </ol>
             </div>
             <div id = 'attribute'> Hey, I'm invisible ^.^ </div>
@@ -30,10 +30,21 @@
                     let anotherElement = document.createElement('p'); //создали элемент типа <p> -- чтобы потом добавить
                     
                     //задание 23 - добавление текстового узла
-                    let textNode = document.createTextNode('Good morning, plant-guys >.<');
+                    let textNode = document.createTextNode('Good morning, plant-guys. ');
                     //чтобы добавить текстовый узел, его надо создать
+                    
+                    let anotherTextNode = document.createTextNode('You look awesome)'); //другой
+                    
+                    
                     anotherElement.appendChild(textNode); 
                     //добавили
+                    
+                    anotherElement.appendChild(anotherTextNode); //добавили другой                   
+                    
+                    //задание 22 - нормализация содержимого
+                    anotherElement.normalize();
+                    // (сейчас проверим)
+                    console.log(anotherElement.childNodes); //>length: 1
                     
                     //задание 2 - добавление элемента
                     elementOne.appendChild(anotherElement);                    
@@ -46,6 +57,7 @@
                     //здесь он один и это текстовый узел
                 }
                 {
+                
                     
                     //задание 25 - получение элемента по ID
                     let plant = document.getElementById('plants');
@@ -54,7 +66,7 @@
                     let fragment = document.createDocumentFragment();
                     
                     //теперь заполним его
-                    let plants = ['Mr.Cactus', 'Mr.Aloe', 'Ms.Violet'];
+                    let plants = ['Mr.Cactus', 'Mr.Aloe', 'Ms.Violet', 'Ms.Saxifrage'];
                     //этим будем заполнять
                     
 
@@ -74,6 +86,24 @@
                     
                     console.log('check is the First Child really the first:', d2.firstChild === d2.childNodes[0]); 
                     //проверили
+                    
+                    
+                    // задание 20 - добавили перед элементом
+                    let greeting = document.createElement('p');
+                    greeting.innerText = 'Meet them with applause!';
+                    let d1 = document.getElementById('text');
+                    d1.insertBefore(greeting, d2.childNodes[0]);
+                    
+                    
+                    //задание 19 - добавление за (и на самом деле в середину)
+                    let add =document.createElement('p'); 
+                    //создает добавочный элемент
+                    add.innerText = ' >.<';
+                    d1.insertBefore(add,greeting.nextSibling);
+                    
+                    
+                    
+                    
                     
                 }
                 {
