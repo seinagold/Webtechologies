@@ -10,6 +10,11 @@
                 font-style:italic;
                 font-family: calibri;
             }
+            .myclass
+            {
+
+                color: #d1aed0;
+            }
         </style>
     </head>
     <body>
@@ -21,9 +26,20 @@
                 <ol id = 'plants' > </ol>
             </div>
             <div id = 'attribute'> Hey, I'm invisible ^.^ </div>
-            
-             <script>
-                {
+            <div id = 'end'>
+                <p id = 'all'> That's all </p>
+                <p> 0_o </p>
+            </div>
+            <div id = 'disttext' style='color:#d1aed0' ondblclick = "console.log('Double clicked')"> Probably disturbing text</div> 
+             <!-- 37 - установка события атрибута-->
+             <div id = 'imp' style='color:#d1aed0'  onclick='visible()'> a shy text </div>
+            <div>
+            <p> Do you like this web-site? </p>
+                <input id ='likes'  required pattern = "[Yy]es|[Nn]o"> 
+                <button id = 'buttom' onclick='check()'> Confirm </button>
+            </div>
+            <script>
+             {
                     //задание 1 - получение элемента по селектору
                     let elementOne = document.querySelector('#getElement');
                     
@@ -57,8 +73,6 @@
                     //здесь он один и это текстовый узел
                 }
                 {
-                
-                    
                     //задание 25 - получение элемента по ID
                     let plant = document.getElementById('plants');
                     
@@ -84,9 +98,6 @@
                     let d2 = document.querySelector('#text'); 
                     //получили родителя
                     
-                    console.log('check is the First Child really the first:', d2.firstChild === d2.childNodes[0]); 
-                    //проверили
-                    
                     
                     // задание 20 - добавили перед элементом
                     let greeting = document.createElement('p');
@@ -96,15 +107,10 @@
                     
                     
                     //задание 19 - добавление за (и на самом деле в середину)
-                    let add =document.createElement('p'); 
+                    let add = document.createElement('p'); 
                     //создает добавочный элемент
                     add.innerText = ' >.<';
                     d1.insertBefore(add,greeting.nextSibling);
-                    
-                    
-                    
-                    
-                    
                 }
                 {
                     // 6 - установка атрибута
@@ -144,8 +150,117 @@
                     // 21 - удалили элемет из DOM
                     h1.remove();
                 }
-           
-           </script>
-        </main>
-    </body>
-</html>
+                
+                {
+                //задание 26 - псевдоселектор scope
+                let d4 = document.getElementById('end');
+                let plist = d4.querySelectorAll(':scope > p'); //Nodelist из p-шек внутри d4
+                console.log(plist);
+                
+                //задание 27 - переключение класса
+                p0 = plist[0];
+                p0.classList.toggle('myclass');
+                
+                    //28 - Использование только событий клавиатуры
+                  //29 - Использование только событий прокрутки
+                  //30 - Использование только кастомных событий
+                  // => следовательно используем только кастомные, так как они последние 
+                  // на самом деле, не только их, но пока так.
+                  let customEvent = new CustomEvent('badcolor', //создали событие (кастомное)
+                    {
+                        detail: 
+                        {   
+                            
+                            color: '#d1aed0' //реагирует, если цвет фиолетовый
+                        }
+                    }); 
+                //задание 31 - отправка события
+                p0.dispatchEvent(customEvent); 
+                
+                let BadC = function()
+                {
+                    console.log('Note: purple at purple looks awful');
+                }
+                //задание 36 - установка события
+                p0.addEventListener('badcolor', BadC());
+                
+                
+                //задание 38 - удаление события
+                p0.removeEventListener('badcolor', BadC());
+                //Здесь нам придется использовать какое-нибудь не кастомное событие
+                //39, 40 замена и удаление события-атрибута
+                let d5 = document.getElementById('disttext');
+                d5.removeAttribute('ondblclick');//удаляем
+                d5.setAttribute('ondblclick', "console.log('2-Clicked')");//замена = удаление + новое (то же самое, так как передумали)
+                
+                // 41 - Установка события-атрибута через шорткат
+                //42 - Удаление события-атрибута через шорткат
+                //43 - Замена события-атрибута через шорткат
+                d5.onmousedown = function func()
+                {
+                    console.log('MouseDowned');
+                }
+     
+                d5.onmousedown = '';//приравняли пустое значение
+    
+                d5.onmousedown = function f() //заменили
+                {
+                    console.log('Downed by mouse');
+                }
+
+                }
+                {
+                //33 - Предотвращение стандартного действия
+               
+               let d = document.getElementById('imp');
+               
+                 function visible()
+                {
+                    let init = new CustomEvent('visible', 
+                    {
+                        cancelable: true //для PreventDefault
+                    });
+                    if (!d.dispatchEvent(init))
+                    {
+                        console.log('It should be invisible');
+                    }
+                    else
+                    {   
+                        d.style.color='#3b0359';
+                    }
+                }
+                
+                d.addEventListener('visible', function(sobytie)
+                {
+                    if(confirm(`this text can't be visible by pressure`))
+                    {
+                        sobytie.preventDefault();
+
+                        
+                    }
+                });
+                
+                }
+                {
+                //проверка на валидность --задание под каким-то номером
+                 let but = document.getElementById('buttom');
+                 
+                 function check()
+                 {
+                    let inp = document.getElementById('likes');
+                    if(inp.checkValidity())
+                     {
+                        
+                        console.log('Thanks for your answer');
+                     }
+                     else
+                     {
+                    console.log('Invalide input');
+                     }
+                 }
+                 console.log(but.type);//детектирование типа события
+
+                }
+                
+                </script>
+<html>
