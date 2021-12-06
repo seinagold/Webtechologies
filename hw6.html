@@ -34,7 +34,25 @@
              <!-- 37 - установка события атрибута-->
              <div id = 'imp' style='color:#d1aed0'  onclick='visible()'> a shy text </div>
             <div>
-            <p> Do you like this web-site? </p>
+            <table border="1"  style="color:purple">
+                    <caption id = 'capt'> Не все зеленое - растение</caption>
+                    <tr class='tabl'>
+                    <td></td>
+                        <td class = 'tabl'> Лягушечка</td>
+                        <td class = 'tabl' > Черепашка </td>
+                        <td class = 'tabl'> Ящерка </td>
+                        </tr>
+                        <tr class = 'tabl'>
+                        <td class = 'tabl' ondblclick = 'event.stopPropagation()'> Зеленое?</td> <!--Предотвращение распорстранение --> 
+                        <td class = 'tabl'> Да </td>
+                        <td class = 'tabl'> Да </td>
+                        <td class = 'tabl'> Да </td>
+                        </tr>
+                   
+                            </table>
+            </div>
+          <div>
+            <p id = 'boldquest'> <b>Do you like this web-site? </b> </p>
                 <input id ='likes'  required pattern = "[Yy]es|[Nn]o"> 
                 <button id = 'buttom' onclick='check()'> Confirm </button>
             </div>
@@ -242,7 +260,7 @@
                 
                 }
                 {
-                //проверка на валидность --задание под каким-то номером
+                //проверка на валидность -- задание под каким-то номером (я сбилась)
                  let but = document.getElementById('buttom');
                  
                  function check()
@@ -261,6 +279,47 @@
                  console.log(but.type);//детектирование типа события
 
                 }
-                
+                {
+                // изменение HTML в текстовом виде, демонстрация проблемы изменения HTML в текстовом виде
+                    let p = document.getElementById('boldquest');
+                    p.innerText = 'Please answer, do you like this page?'; //innerTXT не видит тегов --> текст больше не bold
+                    p.innerHTML = '<u onclick=\'console.log(\"Input your answer\");  for(let i=0; i<10; i++) { console.log(i+1);}\'> Do you like this page?</u>';
+                    //Заметка: экранирование ведет себя странно
+                    
+                    p.innerHTML = p.innerHTML + '<b> Rate us!</b>';
+                }
+                {  
+                // Создание пассивного слушателя
+                    document.body.addEventListener('touchstart', //для удобства теста wheel/scroll на ПК, можно заменить потом для красоты на touchstart
+                        (sobytie) => { console.log('hey. you\'re scrolling');}, //оптимизировали прокрутку страницы
+                        { capture: false, once: false, passive: true});
+                        // Бессмысленность passive-capture - passive:true подразумевает capture:false - вместе не ставить
+                }
+                {
+                    //Демонстрация различных фаз события
+                    for(let i of document.querySelectorAll('.tabl'))
+                    {
+                        i.addEventListener('dblclick', () => console.log(i.tagName), {capture:true}); //погружение
+                        // цель события - место дабл-клика
+                        i.addEventListener('dblclick', () => console.log(i.tagName), {capture:false}); //всплытие
+                        
+                    }
+                    
+                    //немеделенное прекращение распорстранение события
+                    let capt = document.getElementById('capt');
+                    function exterminator (sobytie) 
+                    {
+                        for(let i=0; i<3; i++)
+                            { console.log(i+1);}
+                        sobytie.stopImmediatePropagation();                 
+                    }
+                    function exterminated (sobytie) 
+                    {
+                        for(let i=0; i>3; i--) 
+                            { console.log(i);}
+                    }
+                    capt.addEventListener('dblclick', exterminator); //одна будет работать, но не даст работать второй
+                    capt.addEventListener('dblclick', exterminated);
+                    }
                 </script>
 <html>
