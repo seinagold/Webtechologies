@@ -303,20 +303,25 @@
 
                 }
                 {
-                // изменение HTML в текстовом виде, демонстрация проблемы изменения HTML в текстовом виде
+                 // изменение HTML в текстовом виде, демонстрация проблемы изменения HTML в текстовом виде
+                     function Func ()
+                    {
+                    console.log("Input your answer");  
+                    for(let i=0; i<10; i++) { console.log(i+1);}
+                    
+                    return;
+                    }
                     let p = document.getElementById('boldquest');
+                    p.addEventListener('click', Func);   
                     p.innerText = 'Please answer, do you like this page?'; //innerTXT не видит тегов --> текст больше не bold
-                    p.innerHTML = '<u onclick=\'console.log(\"Input your answer\");  for(let i=0; i<10; i++) { console.log(i+1);}\'> Do you like this page?</u>';
-                    //Заметка: экранирование ведет себя странно
+                 
+                   
+                    p.innerHTML = '<u> Do you like this page?</u>';
+              
+                  
                     
                     p.innerHTML = p.innerHTML + '<b> Rate us!</b>';
-                }
-                {  
-                // Создание пассивного слушателя
-                    document.body.addEventListener('touchstart', //для удобства теста wheel/scroll на ПК, можно заменить потом для красоты на touchstart
-                        (sobytie) => { console.log('hey. you\'re scrolling');}, //оптимизировали прокрутку страницы
-                        { capture: false, once: false, passive: true});
-                        // Бессмысленность passive-capture - passive:true подразумевает capture:false - вместе не ставить
+                    // вроде как должны затереться все eventlistener, но вроде как все равно все работает. может дело в версии?
                 }
                 {
                     //Демонстрация различных фаз события
