@@ -65,9 +65,7 @@
                     let elementOne = document.querySelector('#getElement');
                     
                     let anotherElement = document.createElement('p'); //создали элемент типа <p> -- чтобы потом добавить
-                    
                     let p = document.querySelector('#all'); //взяли существующий p по селектору
-                    
                     elementOne.appendChild(p);//добавили
                     
                     //задание 23 - добавление текстового узла
@@ -149,14 +147,17 @@
                     let h1 = document.querySelector('.header');
                     h1.removeAttribute('style');
                     
-                    //8 - проверка наличия класса 
-                    console.log( h1.hasAttribute('class'));
                     
+                    //8 - проверка наличия класса 
+                    //console.log( h1.hasAttribute('class'));
+                    console.log(h1.classList);
+                    console.log(h1.classList.contains('header')); //проверили
                     console.log(h1);
                     
                     // 7 - удаление класса
-                    h1.removeAttribute('class');
-                    
+                    //h1.removeAttribute('class');
+                    h1.classList.remove('header');//удалили
+                    console.log(h1.classList.contains('header')); //проверили
                     console.log(h1);
                     
                     // 9 - установка ID
