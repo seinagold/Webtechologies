@@ -1,0 +1,394 @@
+<!--
+Получение элементов по селектору Добавление нового элемента Навигация по DOM Создание фрагмента документа Удаление атрибута Установка атрибута Удаление класса Проверка наличия класса Установка ID Изменение HMTL в текстовом виде Демонстрация проблемы изменения HTML в текстовом виде Переход к следующему узлу Переход к предыдущему узлу Переход к следующему элементу Переход к предыдущему элементу Элементы-потомки Добавить последним в элемент Добавить в середину элемента Добавить за элементом Добавить перед элементом Удалить элемент из DOM Нормализация содержимого Добавление текстового узла Добавление фрагмента документа Получение элемента по ID Псевдоселектор scope Переключение класса Использование только событий клавиатуры Использование только событий прокрутки Использование только кастомных событий Отправка своего события Проверка события на валидность Предотвращение стандартного действия Предотвращение распространения Немедленное прекращение распространения Установка события Установка события-атрибута Удаление события Удаление события-атрибута Замена события-атрибута Установка события-атрибута через шорткат Удаление события-атрибута через шорткат Замена события-атрибута через шорткат Демонстрация различных фаз события Создание пассивного слушателя Детектирование фазы события Детектирование типа события Демонстрация бессмысленности passive capture
+-->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title> E&E (elements and events)  </title>
+        <style> 
+            :root 
+            {
+                background-color: #d1aed0;
+                color: #3b0359;
+                font-style:italic;
+                font-family: calibri;
+            }
+            .myclass
+            {
+
+                color: #d1aed0;
+            }
+        </style>
+    </head>
+    <body>
+        <main>
+            <h1 class = "header" style = "color: #ffe054" > Header </h1>
+            <div id = 'getElement'> </div>
+            <div id = 'text'>
+                <p> Look! </p>
+                <ol id = 'plants' > </ol>
+            </div>
+            <div id = 'attribute'> Hey, I'm invisible ^.^ </div>
+            <div id = 'end'>
+                <p id = 'all'> That's all </p>
+                <p> 0_o </p>
+            </div>
+            <div id = 'disttext' style='color:#d1aed0' ondblclick = "console.log('Double clicked')"> Probably disturbing text</div> 
+             <!-- 37 - установка события атрибута-->
+             <div id = 'imp' style='color:#d1aed0'  onclick='visible()'> a shy text </div>
+            <div>
+            <table border="1"  style="color:purple">
+                    <caption id = 'capt'> Не все зеленое - растение</caption>
+                    <tr class='tabl'>
+                    <td></td>
+                        <td class = 'tabl'> Лягушечка</td>
+                        <td class = 'tabl' > Черепашка </td>
+                        <td class = 'tabl'> Ящерка </td>
+                        </tr>
+                        <tr class = 'tabl'>
+                        <td class = 'tabl' ondblclick = 'event.stopPropagation()'> Зеленое?</td> <!--Предотвращение распорстранение --> 
+                        <td class = 'tabl'> Да </td>
+                        <td class = 'tabl'> Да </td>
+                        <td class = 'tabl'> Да </td>
+                        </tr>
+                   
+                            </table>
+            </div>
+          <div>
+            <p id = 'boldquest' oncopy = 'console.log(`Copied`);'> <b>Do you like this web-site? </b> </p>
+                <input id ='likes'  required pattern = "[Yy]es|[Nn]o"> 
+                <button id = 'buttom' onclick='check()'> Confirm </button>
+            </div>
+            <div  id="hellobut"> </div>
+            <script>
+             {
+                    //задание 1 - получение элемента по селектору
+                    let elementOne = document.querySelector('#getElement');
+                    
+                    let anotherElement = document.createElement('p'); //создали элемент типа <p> -- чтобы потом добавить
+                    let p = document.querySelector('#all'); //взяли существующий p по селектору
+                    elementOne.appendChild(p);//добавили
+                    
+                    //задание 23 - добавление текстового узла
+                    let textNode = document.createTextNode('Good morning, plant-guys. ');
+                    //чтобы добавить текстовый узел, его надо создать
+                    
+                    let anotherTextNode = document.createTextNode('You look awesome)'); //другой
+                    
+                    
+                    anotherElement.appendChild(textNode); 
+                    //добавили
+                    
+                    anotherElement.appendChild(anotherTextNode); //добавили другой                   
+                    
+                    //задание 22 - нормализация содержимого
+                    anotherElement.normalize();
+                    // (сейчас проверим)
+                    console.log(anotherElement.childNodes); //>length: 1
+                    
+                    //задание 2 - добавление элемента
+                    elementOne.appendChild(anotherElement);                    
+                    //добавили новый элемент в конец, то есть последним -> 17
+                    
+                    //задание 3 - навигация по DOM 
+                    //(в принципе уже приведена выш, но вот еще:)
+                    //посмотрим первого потомка anotherElement
+                    console.log(anotherElement.childNodes[0]);
+                    //здесь он один и это текстовый узел
+                }
+                {
+                    //задание 25 - получение элемента по ID
+                    let plant = document.getElementById('plants');
+                    
+                    //задание 4 - создание фрагмента документа
+                    let fragment = document.createDocumentFragment();
+                    
+                    //теперь заполним его
+                    let plants = ['Mr.Cactus', 'Mr.Aloe', 'Ms.Violet', 'Ms.Saxifrage'];
+                    //этим будем заполнять
+                    
+
+                    plants.forEach((plantguy) => 
+                    {
+                        let plantList = document.createElement('li');
+                        plantList.innerHTML = plantguy;
+                        fragment.appendChild(plantList);
+                    });
+                    //задание 24 - добавление фрагмента документа
+                    plant.appendChild(fragment);
+                    
+                    
+                    //задание 16 - элементы потомки
+                    let d2 = document.querySelector('#text'); 
+                    //получили родителя
+                    
+                    
+                    // задание 20 - добавили перед элементом
+                    let greeting = document.createElement('p');
+                    greeting.innerText = 'Meet them with applause!';
+                    let d1 = document.getElementById('text');
+                    d1.insertBefore(greeting, d2.childNodes[0]);
+                    
+                    
+                    //задание 19 - добавление за (и на самом деле в середину)
+                    let add = document.createElement('p'); 
+                    //создает добавочный элемент
+                    add.innerText = ' >.<';
+                    d1.insertBefore(add,greeting.nextSibling);
+                }
+                {
+                    // 6 - установка атрибута
+                    let invisible = document.querySelector('#attribute');
+                    //для этого получили элемент, чтобы добавить ему атрибут
+                    
+                    invisible.setAttribute('style', 'display:none'); //невидимость невидимке
+                    
+                    // 5 - удаление атрибута (другого, так как этот мне нравится )
+                    //получаем его
+                    let h1 = document.querySelector('.header');
+                    h1.removeAttribute('style');
+                    
+                    
+                    //8 - проверка наличия класса 
+                    //console.log( h1.hasAttribute('class'));
+                    console.log(h1.classList);
+                    console.log(h1.classList.contains('header')); //проверили
+                    console.log(h1);
+                    
+                    // 7 - удаление класса
+                    //h1.removeAttribute('class');
+                    h1.classList.remove('header');//удалили
+                    console.log(h1.classList.contains('header')); //проверили
+                    console.log(h1);
+                    
+                    // 9 - установка ID
+                    h1.id = 'header';
+                    
+                    console.log(h1);
+                    
+                    //14 - переход к следующему элементу
+                    let d1 = h1.nextElementSibling;
+                    console.log(d1);
+                    //в данном случае узел является элементом. поэтому это и 12 - переход к следующему узлу. отдельно есть .nextSibling 
+                    
+                    //15, 13 - к предыдущему
+                    console.log(d1.previousElementSibling);
+                    
+                    // 21 - удалили элемет из DOM
+                    h1.remove();
+                }
+                
+                {
+                //задание 26 - псевдоселектор scope
+                let d4 = document.getElementById('end');
+                let plist = d4.querySelectorAll(':scope > p'); //Nodelist из p-шек внутри d4
+                console.log(plist);
+                
+                //задание 27 - переключение класса
+                p0 = plist[0];
+                p0.classList.toggle('myclass');
+                
+                    //28 - Использование только событий клавиатуры
+                  //29 - Использование только событий прокрутки
+                  //30 - Использование только кастомных событий
+                  // => следовательно используем только кастомные, так как они последние 
+                  // на самом деле, не только их, но пока так.
+                  let customEvent = new CustomEvent('badcolor', //создали событие (кастомное)
+                    {
+                        detail: 
+                        {   
+                            
+                            color: '#d1aed0' //реагирует, если цвет фиолетовый
+                        }
+                    }); 
+                //задание 31 - отправка события
+                p0.dispatchEvent(customEvent); 
+                
+                let BadC = function()
+                {
+                    console.log('Note: purple at purple looks awful');
+                }
+                //задание 36 - установка события
+                p0.addEventListener('badcolor', BadC());
+                
+                
+                
+                //задание 38 - удаление события
+                p0.removeEventListener('badcolor', BadC());
+                //Здесь нам придется использовать какое-нибудь не кастомное событие
+                //39, 40 замена и удаление события-атрибута
+                let d5 = document.getElementById('disttext');
+                d5.removeAttribute('ondblclick');//удаляем
+                d5.setAttribute('ondblclick', "console.log('2-Clicked')");//замена = удаление + новое (то же самое, так как передумали)
+                
+                // 41 - Установка события-атрибута через шорткат
+                //42 - Удаление события-атрибута через шорткат
+                //43 - Замена события-атрибута через шорткат
+                d5.onmousedown = function func()
+                {
+                    console.log('MouseDowned');
+                }
+     
+                d5.onmousedown = '';//приравняли пустое значение
+    
+                d5.onmousedown = function f() //заменили
+                {
+                    console.log('Downed by mouse');
+                }
+
+                }
+                {
+                //33 - Предотвращение стандартного действия
+               
+               let d = document.getElementById('imp');
+               
+                 function visible()
+                {
+                    let init = new CustomEvent('visible', 
+                    {
+                        cancelable: true //для PreventDefault
+                    });
+                    if (!d.dispatchEvent(init))
+                    {
+                        console.log('It should be invisible');
+                    }
+                    else
+                    {   
+                        d.style.color='#3b0359';
+                    }
+                }
+                
+                d.addEventListener('visible', function(sobytie)
+                {
+                    if(confirm(`this text can't be visible by pressure`))
+                    {
+                        sobytie.preventDefault();
+
+                        
+                    }
+                });
+                
+                  function isNotNativeEvent (eventName) //проверка на валиднось события
+                {
+                    let tp = typeof document.body['on' + eventName];
+                    console.log(tp == 'undefined');
+                    return;
+                }
+                
+                isNotNativeEvent('click');//false
+                isNotNativeEvent('visible'); //true
+                isNotNativeEvent('dblclick');//false
+                
+                
+                //проверка на достверность
+                
+                let e = new Event('click');
+                console.log( e instanceof Event); //true
+                let epoint = new Event('pointerup');
+                console.log( epoint instanceof Event); //true
+                console.log(visible instanceof Event); //false
+                
+                }
+                {
+                //проверка на валидность -- задание под каким-то номером (я сбилась)
+                
+                let but = document.getElementById('buttom');
+                
+                
+                 function check()
+                 {
+                    let inp = document.getElementById('likes');
+                    if(inp.checkValidity())
+                     {
+                        
+                        console.log('Thanks for your answer');
+                     }
+                     else
+                     {
+                    console.log('Invalide input');
+                     }
+                 }
+                 console.log(but.type);//детектирование типа события
+
+                }
+                {
+                 // изменение HTML в текстовом виде, демонстрация проблемы изменения HTML в текстовом виде
+                     function Func ()
+                    {
+                    console.log("Input your answer");  
+                    for(let i=0; i<10; i++) { console.log(i+1);}
+                    
+                    return;
+                    }
+                    let p = document.getElementById('boldquest');
+                    p.addEventListener('click', Func);   
+                    p.innerText = 'Please answer, do you like this page?'; //innerTXT не видит тегов --> текст больше не bold
+                 
+                   let inp = document.getElementById('buttom');
+                   inp.addEventListener('dblclick', Func);
+                    p.innerHTML = '<u> Do you like this page?</u>';
+              
+                  
+                    
+                    p.innerHTML = p.innerHTML + '<b> Rate us!</b>';
+                    // вроде как должны затереться все eventlistener, но вроде как все равно все работает. может дело в версии?
+                }
+                {
+                    //Демонстрация различных фаз события
+                    for(let i of document.querySelectorAll('.tabl'))
+                    {
+                        i.addEventListener('dblclick', () => console.log(i.tagName), {capture:true}); //погружение
+                        // цель события - место дабл-клика
+                        i.addEventListener('dblclick', () => console.log(i.tagName), {capture:false}); //всплытие
+                        
+                    }
+                    
+                    //немеделенное прекращение распорстранение события
+                    let capt = document.getElementById('capt');
+                    function exterminator (sobytie) 
+                    {
+                        for(let i=0; i<3; i++)
+                            { console.log(i+1);}
+                        sobytie.stopImmediatePropagation();                 
+                    }
+                    function exterminated (sobytie) 
+                    {
+                        for(let i=0; i>3; i--) 
+                            { console.log(i);}
+                    }
+                    capt.addEventListener('dblclick', exterminator); //одна будет работать, но не даст работать второй
+                    capt.addEventListener('dblclick', exterminated);
+                    }
+                    
+                    {//InnerHTML! 
+                    document.addEventListener('copy', () =>  //сработает если скопировать текст
+                    {
+                        let  div  =  document.querySelector('#hellobut');
+                        
+                        let  btn  =  document.createElement('button');
+                        btn.addEventListener('click', () =>  console.log('hello'))
+                        btn.innerText  =  'Test Button';
+                        div.append(btn);
+                        div.innerHTML  =  div.innerHTML + '<br/> a bit more text to the DOM';
+                        //если закомментировать эту строчку то будет выведено hello при нажатии на кнопку
+                        });
+                    //Подлинность eventa!
+                       document.addEventListener('pointerup', function(event) 
+                           {
+                            if(event.isTrusted)
+                            {
+                                console.log('It\'s trusted event');
+                            }
+                            else
+                            {
+                                console.log('It isn\'t trusted');
+                            }
+                           });
+                           //pointerup -trusted -> сгенерированный юзером а не скриптом
+                        
+                      
+                    }
+                    
+                    
+                </script>
+<html>
