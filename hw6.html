@@ -323,7 +323,8 @@
                     p.addEventListener('click', Func);   
                     p.innerText = 'Please answer, do you like this page?'; //innerTXT не видит тегов --> текст больше не bold
                  
-                   
+                   let inp = document.getElementById('buttom');
+                   inp.addEventListener('dblclick', Func);
                     p.innerHTML = '<u> Do you like this page?</u>';
               
                   
