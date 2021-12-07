@@ -372,6 +372,21 @@
                         div.innerHTML  =  div.innerHTML + '<br/> a bit more text to the DOM';
                         //если закомментировать эту строчку то будет выведено hello при нажатии на кнопку
                         });
+                    //Подлинность eventa!
+                       document.addEventListener('pointerup', function(event) 
+                           {
+                            if(event.isTrusted)
+                            {
+                                console.log('It\'s trusted event');
+                            }
+                            else
+                            {
+                                console.log('It isn\'t trusted');
+                            }
+                           });
+                           //pointerup -trusted -> сгенерированный юзером а не скриптом
+                        
+                      
                     }
                     
                     
