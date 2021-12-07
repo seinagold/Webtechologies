@@ -211,6 +211,7 @@
                 p0.addEventListener('badcolor', BadC());
                 
                 
+                
                 //задание 38 - удаление события
                 p0.removeEventListener('badcolor', BadC());
                 //Здесь нам придется использовать какое-нибудь не кастомное событие
@@ -260,17 +261,31 @@
                 {
                     if(confirm(`this text can't be visible by pressure`))
                     {
-                        sobytie.preventDefault();
+                        e.preventDefault();
 
                         
                     }
                 });
                 
+                  function isNotNativeEvent (eventName) //проверка на валиднось события
+                {
+                    let tp = typeof document.body['on' + eventName];
+                    console.log(tp == 'undefined');
+                    return;
+                }
+                
+                isNotNativeEvent('click');//false
+                isNotNativeEvent('visible'); //true
+                isNotNativeEvent('dblclick');//false
+                
+                
                 }
                 {
                 //проверка на валидность -- задание под каким-то номером (я сбилась)
-                 let but = document.getElementById('buttom');
-                 
+                
+                let but = document.getElementById('buttom');
+                
+                
                  function check()
                  {
                     let inp = document.getElementById('likes');
