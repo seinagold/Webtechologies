@@ -66,6 +66,10 @@
                     
                     let anotherElement = document.createElement('p'); //создали элемент типа <p> -- чтобы потом добавить
                     
+                    let p = document.querySelector('#all'); //взяли существующий p по селектору
+                    
+                    elementOne.appendChild(p);//добавили
+                    
                     //задание 23 - добавление текстового узла
                     let textNode = document.createTextNode('Good morning, plant-guys. ');
                     //чтобы добавить текстовый узел, его надо создать
