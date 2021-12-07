@@ -59,6 +59,7 @@
                 <input id ='likes'  required pattern = "[Yy]es|[Nn]o"> 
                 <button id = 'buttom' onclick='check()'> Confirm </button>
             </div>
+            <div  id="hellobut"> </div>
             <script>
              {
                     //задание 1 - получение элемента по селектору
@@ -358,5 +359,21 @@
                     capt.addEventListener('dblclick', exterminator); //одна будет работать, но не даст работать второй
                     capt.addEventListener('dblclick', exterminated);
                     }
+                    
+                    {//InnerHTML! 
+                    document.addEventListener('copy', () =>  //сработает если скопировать текст
+                    {
+                        let  div  =  document.querySelector('#hellobut');
+                        
+                        let  btn  =  document.createElement('button');
+                        btn.addEventListener('click', () =>  console.log('hello'))
+                        btn.innerText  =  'Test Button';
+                        div.append(btn);
+                        div.innerHTML  =  div.innerHTML + '<br/> a bit more text to the DOM';
+                        //если закомментировать эту строчку то будет выведено hello при нажатии на кнопку
+                        });
+                    }
+                    
+                    
                 </script>
 <html>
