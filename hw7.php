@@ -78,6 +78,65 @@ pinkcolor: #ffc6b8;
                     <div> Dear <?php echo $_GET['client_name']; ?>! We've already accepted your claim and taking measures regarding <?php echo $_GET['claim']; ?> </div>
                 </fieldset>
             </section>
+            <br>
+            <!-- Тут начинается вторая часть задания-->
+            <form id= 'rating'>
+                <span class='quest'> Оцените, пожалуйста, работу нашего сайта и сервиса по работе с жалобами клиентов! </span>
+                <span> Какова вероятность, что вы порекомендуете наш сервис своим знакомым? <br> <i>Оцените от 0 до 5, где 0 - самая негативная оценка, 5 - самая положительная</i></span> <br>
+                <select name='rate' style= 'background-color:#ffc6b8;'>
+                    <option value ='five'> 5  </option>
+                    <option value ='four'> 4  </option>
+                    <option value ='three'> 3  </option>
+                    <option value ='two'> 2  </option>
+                    <option value ='one'> 1  </option>
+                    <option value ='zero'> 0  </option>
+                </select>
+                <button type='submit' style = 'background-color:#ffc6b8; position: relative; left:350px'> Claim </button>
+            </form> <!-- Эту форму будем фетчить-->
+             <section>
+                <fieldset>
+                    <legend> Thank you for rating! </legend>
+                    <div> You've rated us by <?php echo $_POST['rate']; ?> </div>
+                </fieldset>
+            </section>
+           <script>
+
+            let rate = document.getElementById('rating');
+            
+            
+            function fetchIt(event)
+             {
+                event.preventDefault();
+                let fragmForm = new FormData(rate);
+                postIt(fragmForm);
+                
+                function postIt(fragmForm)
+                {
+                    fetch('hw7.php', 
+                    {
+                        method: 'POST',
+                        body: fragmForm
+                    }).then (response =>  response.text() )
+                    .then (text => { console.log(text);});
+                }
+            }
+            rate.addEventListener('click', function(event) 
+            {
+                event.preventDefault();
+                let fragmForm = new FormData(rate);
+                postIt(fragmForm);
+                
+                function postIt(fragmForm)
+                {
+                    fetch('hw7.php', 
+                    {
+                        method: 'POST',
+                        body: fragmForm
+                    }).then (response =>  response.text() )
+                    .then (text => { console.log(text);});
+                }
+            });
+            </script>
         </main>
     </body>
 </html>
