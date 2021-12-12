@@ -133,7 +133,8 @@ pinkcolor: #ffc6b8;
                         method: 'POST',
                         body: fragmForm
                     }).then (response =>  response.text() )
-                    .then (text => { console.log(text);});
+                    .then (text => { console.log(text);})
+                    .catch(error => { console.log('Error: ', error.message);});
                 }
             });
             </script>
